@@ -1,4 +1,4 @@
-*Sujet:*
+*Casse tête - proba*
 
 
 *Membres du groupe:*
