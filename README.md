@@ -3,6 +3,6 @@
 
 *Membres du groupe:*
 
-- Homer Simpson
-- Ned Flanders
-- Otto Bus
+- Marion Seignovert
+- Raphael Miceli
+
