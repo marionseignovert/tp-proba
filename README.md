@@ -5,4 +5,5 @@
 
 - Marion Seignovert
 - Raphael Miceli
+- Nicolas De Libero
 
