@@ -1,49 +1,65 @@
+from random import *
+
 class Game:
 
     def __init__(self):
-        self.chevre1 = Door(False, False, False)
-        self.chevre2 = Door(False, False, False)
-        self.voiture = Door(False, False, True)
-        self.portes = [self.chevre1, self.chevre2, self.voiture]
+        porte_win = randint(0, 2)
+        self.porte_gagnante = porte_win
+        self.porte_ouverte = -1
+        self.porte_designe = -1
+        #print("Porte gagnante :", self.porte_gagnante)
+
 
     def init_game(self):
         pass
 
-    def choix_porte(self, i):
-       portechoisi = self.portes[i]
-       portechoisi.designe = True
+    def choix_porte(self):
+        self.porte_designe = randint(0, 2)
+        #print("Porte Choisie : ",self.porte_designe)
 
 
-    def reveal(self, i):
-        porteouvert = self.portes[i]
-        porteouvert.ouverte = True
+    def reveal(self):
+        if self.porte_designe == self.porte_gagnante:
+            porte_a_ouvrir = randint(0,2)
+            while porte_a_ouvrir == self.porte_gagnante:
+                porte_a_ouvrir = randint(0,2)
+            #porteouvert = self.portes[i]
+            #porteouvert.ouverte = True
+            #print("Porte ouverte : ",porte_a_ouvrir)
+            self.porte_ouverte = porte_a_ouvrir
+
+        else:
+            porte_a_ouvrir = randint(0, 2)
+            while porte_a_ouvrir == self.porte_designe or porte_a_ouvrir == self.porte_gagnante:
+                porte_a_ouvrir = randint(0, 2)
+            #print("Porte ouverte :", porte_a_ouvrir)
+            self.porte_ouverte = porte_a_ouvrir
 
 
-    def open(self, i):
-        porte = self.portes[i]
-        if i == 2:
-            print("vous avez gagné")
-        else :
-            porte.ouverte = True
-            print("vous avez perdu")
-
-
-
-
-
-
-class Door:
-
-    def __init__(self, ouverte, designe, gagnante):
-        self.ouverte = ouverte
-        self.designe = designe
-        self.gagnante = gagnante
+    def open(self, changement):
+        if changement == 1:
+            if self.porte_designe == self.porte_gagnante:
+                #print("Vous avez perdu")
+                return "Loose"
+            else:
+                #print("Vous avez gagné")
+                return "Win"
+        elif changement == 0:
+            if self.porte_designe == self.porte_gagnante:
+                #print("Vous avez gagné")
+                return "Win"
+            else:
+                #print("Vous avez perdu")
+                return "Loose"
+        else:
+            print("Vous avez rentré un paramètre faux")
 
 
 game = Game()
-game.choix_porte(1)
-game.reveal(0)
+game.choix_porte()
+game.reveal()
 game.open(1)
+
 
 """
 first_door = Game().chevre1
