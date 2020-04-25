@@ -23,9 +23,6 @@ class Game:
             porte_a_ouvrir = randint(0,2)
             while porte_a_ouvrir == self.porte_gagnante:
                 porte_a_ouvrir = randint(0,2)
-            #porteouvert = self.portes[i]
-            #porteouvert.ouverte = True
-            #print("Porte ouverte : ",porte_a_ouvrir)
             self.porte_ouverte = porte_a_ouvrir
 
         else:
@@ -55,13 +52,41 @@ class Game:
             print("Vous avez rentré un paramètre faux")
 
 
-game = Game()
-game.choix_porte()
-game.reveal()
-game.open(1)
+conteur_win = 0
+conteur_loose = 0
+nombre_passage = 0
+n = 100
+print("Pour ", n, " parties en changeant de porte")
+for i in range(0,n):
+    nombre_passage = nombre_passage + 1
+    game = Game()
+    game.choix_porte()
+    game.reveal()
+    #game.open(1)
+    if game.open(1) == "Win":
+        conteur_win = conteur_win + 1
+    else:
+        conteur_loose = conteur_loose + 1
+print("Nombre de Passage : ", nombre_passage, " ")
+print("Nombre de Victoire : ", conteur_win, " ")
+print("Nombre de Défaite : ", conteur_loose, " ")
 
+conteur_win = 0
+conteur_loose = 0
+nombre_passage = 0
+print("Pour ", n, " parties sans changer de porte")
+for i in range(0,n):
+    nombre_passage = nombre_passage + 1
+    game = Game()
+    game.choix_porte()
+    game.reveal()
+    #game.open(1)
+    if game.open(0) == "Win":
+        conteur_win = conteur_win + 1
+    else:
+        conteur_loose = conteur_loose + 1
+print("Nombre de Passage : ", nombre_passage, " ")
+print("Nombre de Victoire : ", conteur_win, " ")
+print("Nombre de Défaite : ", conteur_loose, " ")
 
-"""
-first_door = Game().chevre1
-Game().open(first_door)
-"""
+print("Conclusion: Le joueur a plus de chances de gagner lorsqu'il change de choix de porte. ")
